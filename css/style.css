@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1a0033 0%, #2d0052 50%, #0d001f 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    width: 100%;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient 3s ease infinite;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #b0b0ff;
+    opacity: 0.8;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* Esfera do Oráculo */
+.oracle-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.oracle-sphere {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #4400ff, #1a0055);
+    box-shadow: 
+        0 0 30px rgba(68, 0, 255, 0.8),
+        0 0 60px rgba(0, 255, 255, 0.5),
+        inset 0 0 30px rgba(0, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.oracle-sphere:hover {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.sphere-inner {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #6600ff, #0d0033);
+    position: relative;
+    overflow: hidden;
+}
+
+.sphere-light {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 255, 255, 0.4), transparent);
+    animation: light-move 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 
+            0 0 30px rgba(68, 0, 255, 0.8),
+            0 0 60px rgba(0, 255, 255, 0.5),
+            inset 0 0 30px rgba(0, 255, 255, 0.3);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 
+            0 0 50px rgba(68, 0, 255, 1),
+            0 0 100px rgba(0, 255, 255, 0.8),
+            inset 0 0 50px rgba(0, 255, 255, 0.5);
+    }
+}
+
+@keyframes light-move {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(10px, 10px); }
+}
+
+/* Caixa de resposta */
+.answer-box {
+    background: rgba(30, 0, 60, 0.8);
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.answer-text {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #00ffff;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Formulário */
+.input-section {
+    display: flex;
+    gap: 10px;
+}
+
+.question-input {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid #00ffff;
+    border-radius: 5px;
+    background: rgba(0, 20, 40, 0.8);
+    color: #e0e0e0;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.question-input:focus {
+    border-color: #ff00ff;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+}
+
+.ask-button {
+    padding: 12px 30px;
+    background: linear-gradient(45deg, #ff00ff, #00ffff);
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ask-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+}
+
+.ask-button:active {
+    transform: scale(0.95);
+}
+
+/* Histórico */
+.history-section {
+    background: rgba(30, 0, 60, 0.6);
+    border: 1px solid #00ffff;
+    border-radius: 5px;
+    padding: 20px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.history-section h3 {
+    color: #ff00ff;
+    margin-bottom: 15px;
+}
+
+.history-list {
+    list-style: none;
+}
+
+.history-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    color: #b0b0ff;
+    font-size: 0.9rem;
+}
+
+.history-list li.empty {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+.history-list li:last-child {
+    border-bottom: none;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .oracle-sphere {
+        width: 150px;
+        height: 150px;
+    }
+
+    .sphere-inner {
+        width: 130px;
+        height: 130px;
+    }
+
+    .input-section {
+        flex-direction: column;
+    }
+
+    .ask-button {
+        width: 100%;
+    }
+}
