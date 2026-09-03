@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔮 Oráculo Interativo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔮 Oráculo Interativo</h1>
+            <p class="subtitle">Faça uma pergunta ao oráculo e descubra o seu destino</p>
+        </header>
+
+        <main>
+            <div class="oracle-wrapper">
+                <!-- Esfera do oráculo -->
+                <div class="oracle-sphere" id="oracleSphere">
+                    <div class="sphere-inner">
+                        <div class="sphere-light"></div>
+                    </div>
+                </div>
+
+                <!-- Área de resposta -->
+                <div class="answer-box" id="answerBox">
+                    <p class="answer-text" id="answerText">Faça uma pergunta...</p>
+                </div>
+            </div>
+
+            <!-- Formulário de entrada -->
+            <div class="input-section">
+                <input 
+                    type="text" 
+                    id="questionInput" 
+                    class="question-input" 
+                    placeholder="Faça uma pergunta ao oráculo..."
+                    autocomplete="off"
+                >
+                <button id="askButton" class="ask-button">Consultar</button>
+            </div>
+
+            <!-- Histórico de perguntas -->
+            <div class="history-section">
+                <h3>Histórico</h3>
+                <ul id="historyList" class="history-list">
+                    <li class="empty">Sem perguntas ainda...</li>
+                </ul>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2026 Oráculo Interativo | Criado por Sofia</p>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
