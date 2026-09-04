@@ -1,59 +1,89 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔮 Oráculo Interativo</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>A Voz da Alma — Oráculo de Maria Madalena</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🔮 Oráculo Interativo</h1>
-            <p class="subtitle">Faça uma pergunta ao oráculo e descubra o seu destino</p>
-        </header>
+  <main class="container" role="main" aria-labelledby="title">
+    <h1 id="title">A Voz da Alma</h1>
+    <div class="subtitle">Oráculo de Maria Madalena</div>
 
-        <main>
-            <div class="oracle-wrapper">
-                <!-- Esfera do oráculo -->
-                <div class="oracle-sphere" id="oracleSphere">
-                    <div class="sphere-inner">
-                        <div class="sphere-light"></div>
-                    </div>
-                </div>
+    <p class="intro-text">
+      “A Alma não responde à pressa. Ela revela-se à presença.”<br>
+      Antes de tirar a sua carta, respire fundo, acalme a mente e pergunte em silêncio:<br>
+      <strong>«O que a minha Alma precisa de recordar hoje?»</strong>
+    </p>
 
-                <!-- Área de resposta -->
-                <div class="answer-box" id="answerBox">
-                    <p class="answer-text" id="answerText">Faça uma pergunta...</p>
-                </div>
-            </div>
+    <button id="drawButton" type="button" aria-controls="meaningPanel">Escutar a Alma</button>
 
-            <!-- Formulário de entrada -->
-            <div class="input-section">
-                <input 
-                    type="text" 
-                    id="questionInput" 
-                    class="question-input" 
-                    placeholder="Faça uma pergunta ao oráculo..."
-                    autocomplete="off"
-                >
-                <button id="askButton" class="ask-button">Consultar</button>
-            </div>
-
-            <!-- Histórico de perguntas -->
-            <div class="history-section">
-                <h3>Histórico</h3>
-                <ul id="historyList" class="history-list">
-                    <li class="empty">Sem perguntas ainda...</li>
-                </ul>
-            </div>
-        </main>
-
-        <footer>
-            <p>© 2026 Oráculo Interativo | Criado por Sofia</p>
-        </footer>
+    <div class="card-container">
+      <div class="card" id="oracleCard" tabindex="0" role="region" aria-label="Carta do Oráculo">
+        <div class="card-face card-back" id="cardBack"></div>
+        <div class="card-face card-front">
+          <img id="cardImage" src="assets/images/card01.svg" alt="Carta do Oráculo">
+        </div>
+      </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <section class="meaning-panel" id="meaningPanel" aria-live="polite" hidden>
+      <div class="card-header-meta" id="cardIndex">CARTA 01</div>
+      <h2 class="card-title" id="cardName">O Chamado</h2>
+
+      <div class="section-title">Mensagem Essencial</div>
+      <p class="card-text" id="cardMsg"></p>
+
+      <div class="section-title">A Voz de Maria Madalena</div>
+      <p class="card-text" id="cardMadalena" style="font-style: italic;"></p>
+
+      <div class="section-title">Ritual de Integração</div>
+      <p class="card-text" id="cardRitual"></p>
+
+      <div class="section-title">Para o teu Diário da Alma</div>
+      <p class="card-text" id="cardJournal" style="color: #615349;"></p>
+
+      <div class="meta-tags" id="cardMeta"></div>
+    </section>
+  </main>
+
+  <script src="assets/js/deck.js"></script>
+  <script>
+    const drawButton = document.getElementById('drawButton');
+    const meaningPanel = document.getElementById('meaningPanel');
+
+    function showCard(card) {
+      document.getElementById('cardIndex').textContent = `CARTA ${card.id}`;
+      document.getElementById('cardName').textContent = card.name;
+      document.getElementById('cardMsg').textContent = card.msg;
+      document.getElementById('cardMadalena').textContent = card.madalena;
+      document.getElementById('cardRitual').textContent = card.ritual;
+      document.getElementById('cardJournal').textContent = card.journal;
+      document.getElementById('cardMeta').textContent = `${card.keyword} • ${card.energy}`;
+      const img = document.getElementById('cardImage');
+      img.src = card.image || 'assets/images/card01.svg';
+      img.alt = card.name || 'Carta do Oráculo';
+      meaningPanel.hidden = false;
+      // small flip animation
+      const cardEl = document.getElementById('oracleCard');
+      cardEl.classList.add('flipped');
+      setTimeout(() => cardEl.classList.remove('flipped'), 1200);
+    }
+
+    drawButton.addEventListener('click', () => {
+      const idx = Math.floor(Math.random() * voiceOfSoulDeck.length);
+      const card = voiceOfSoulDeck[idx];
+      showCard(card);
+    });
+
+    // keyboard support: Enter or Space on focused card
+    document.getElementById('oracleCard').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        drawButton.click();
+      }
+    });
+  </script>
 </body>
 </html>
