@@ -19,7 +19,7 @@ html<!DOCTYPE html>
             box-sizing: border-box;
         }
 
-        .container {
+      .container {
             text-align: center;
             max-width: 650px;
             width: 100%;
