@@ -3,57 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🔮 Oráculo Interativo</title>
+    <title>🔮 A Voz da Alma — Oráculo de Maria Madalena</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🔮 Oráculo Interativo</h1>
-            <p class="subtitle">Faça uma pergunta ao oráculo e descubra o seu destino</p>
+            <h1>🔮 A Voz da Alma</h1>
+            <div class="subtitle">Oráculo de Maria Madalena</div>
+            <p class="intro-text">
+                "A Alma não responde à pressa. Ela revela-se à presença."<br>
+                Antes de tirar a sua carta, respire fundo, acalme a mente e pergunte em silêncio:<br>
+                <strong>«O que a minha Alma precisa de recordar hoje?»</strong>
+            </p>
         </header>
 
         <main>
-            <div class="oracle-wrapper">
-                <!-- Esfera do oráculo -->
-                <div class="oracle-sphere" id="oracleSphere">
-                    <div class="sphere-inner">
-                        <div class="sphere-light"></div>
-                    </div>
+            <!-- Menu de Opções -->
+            <div class="menu-section">
+                <button class="menu-btn" id="singleCardBtn">Carta do Dia</button>
+                <button class="menu-btn" id="threeCardBtn">Tiragem 3 Cartas</button>
+                <button class="menu-btn" id="fiveCardBtn">Tiragem 5 Cartas</button>
+                <button class="menu-btn reset-btn" id="resetBtn">Nova Consulta</button>
+            </div>
+
+            <!-- Baralho Visual -->
+            <div class="deck-section">
+                <div class="deck-visual" id="deckVisual">
+                    <div class="card-back">🔮</div>
                 </div>
-
-                <!-- Área de resposta -->
-                <div class="answer-box" id="answerBox">
-                    <p class="answer-text" id="answerText">Faça uma pergunta...</p>
-                </div>
             </div>
 
-            <!-- Formulário de entrada -->
-            <div class="input-section">
-                <input 
-                    type="text" 
-                    id="questionInput" 
-                    class="question-input" 
-                    placeholder="Faça uma pergunta ao oráculo..."
-                    autocomplete="off"
-                >
-                <button id="askButton" class="ask-button">Consultar</button>
-            </div>
+            <!-- Área de Cartas Reveladas -->
+            <div class="cards-display" id="cardsDisplay"></div>
 
-            <!-- Histórico de perguntas -->
-            <div class="history-section">
-                <h3>Histórico</h3>
-                <ul id="historyList" class="history-list">
-                    <li class="empty">Sem perguntas ainda...</li>
-                </ul>
-            </div>
+            <!-- Detalhe da Carta -->
+            <div class="card-detail" id="cardDetail"></div>
         </main>
 
         <footer>
-            <p>© 2026 Oráculo Interativo | Criado por Sofia</p>
+            <p>© 2026 A Voz da Alma | Criado por Sofia Caldeira</p>
         </footer>
     </div>
 
+    <script src="js/cards-data.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
