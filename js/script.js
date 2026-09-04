@@ -1,164 +1,120 @@
-// Array de respostas do oráculo
-const oracleResponses = [
-    // Positivas
-    "Sim, com certeza!",
-    "O destino sorri para si",
-    "Definitivamente",
-    "As estrelas apontam para sim",
-    "Será abençoado",
-    "Tudo indica que sim",
-    "O caminho está aberto",
-    "Sua vontade triunfará",
-    "Sucesso garantido",
-    "Acredite e verá",
-    
-    // Negativas
-    "Não, o momento não é apropriado",
-    "O caminho está fechado",
-    "Não é o destino",
-    "As forças não o acompanham",
-    "Ainda não é o tempo",
-    "Reconsidere seus passos",
-    "O não reina nesta questão",
-    "Espere o momento certo",
-    "Não é o seu sino que toca",
-    "O universo diz que não",
-    
-    // Neutras/Misteriosas
-    "Talvez... o tempo dirá",
-    "O futuro é incerto",
-    "Não é claro ainda",
-    "Depende de suas escolhas",
-    "O mistério permanece",
-    "Concentrate-se melhor e repita",
-    "As respostas virão em sonhos",
-    "Consulte novamente quando o coração estiver calmo",
-    "O oráculo guarda este segredo",
-    "Medite sobre isto",
-    "Nem tudo é dado conhecer",
-    "A resposta já reside em si",
-    "Procure dentro, não fora",
-    "O tempo revelará a verdade",
-    "Ouça a voz interior",
-    
-    // Cómicas
-    "Peça ao oráculo da batata 🥔",
-    "Apenas se beber água abençoada",
-    "Sim, se acreditar muito forte",
-    "Pergunta demasiado fácil para o oráculo",
-    "Volta quando tiveres uma pergunta verdadeira",
-    "O meu cristal está embaciado...",
-    "Que tal café primeiro? ☕",
-    "Repita, não estava a ouvir",
-    "Essa pergunta já foi feita há eras",
-    "Simmmm (às vezes)",
-];
-
 // Elementos do DOM
-const oracleSphere = document.getElementById('oracleSphere');
-const answerBox = document.getElementById('answerBox');
-const answerText = document.getElementById('answerText');
-const questionInput = document.getElementById('questionInput');
-const askButton = document.getElementById('askButton');
-const historyList = document.getElementById('historyList');
+const singleCardBtn = document.getElementById('singleCardBtn');
+const threeCardBtn = document.getElementById('threeCardBtn');
+const fiveCardBtn = document.getElementById('fiveCardBtn');
+const resetBtn = document.getElementById('resetBtn');
+const deckVisual = document.getElementById('deckVisual');
+const cardsDisplay = document.getElementById('cardsDisplay');
+const cardDetail = document.getElementById('cardDetail');
 
-// Histórico de perguntas
-let questionHistory = [];
+// Estado da aplicação
+let currentCards = [];
+let selectedCardId = null;
 
-// Função para obter resposta aleatória
-function getRandomResponse() {
-    return oracleResponses[Math.floor(Math.random() * oracleResponses.length)];
-}
-
-// Função para mostrar resposta do oráculo
-function showAnswer(question) {
-    if (!question.trim()) {
-        answerText.textContent = "Faça uma pergunta ao oráculo...";
-        return;
+// Event Listeners
+singleCardBtn.addEventListener('click', () => drawCards(1));
+threeCardBtn.addEventListener('click', () => drawCards(3));
+fiveCardBtn.addEventListener('click', () => drawCards(5));
+resetBtn.addEventListener('click', resetConsultation);
+deckVisual.addEventListener('click', () => {
+    if (currentCards.length > 0) {
+        revealNextCard();
     }
+});
 
-    // Animação da esfera
-    oracleSphere.style.animation = 'none';
-    setTimeout(() => {
-        oracleSphere.style.animation = 'pulse 1s ease-in-out infinite';
-    }, 10);
-
-    // Mostrar "pensando"
-    answerText.textContent = "O oráculo pensa...";
-    answerBox.classList.add('thinking');
-
-    // Simular tempo de espera (2 segundos)
-    setTimeout(() => {
-        const response = getRandomResponse();
-        answerText.textContent = `"${response}"`;
-        answerBox.classList.remove('thinking');
-
-        // Adicionar ao histórico
-        addToHistory(question, response);
-    }, 2000);
-}
-
-// Função para adicionar pergunta ao histórico
-function addToHistory(question, response) {
-    // Limitar histórico a 10 perguntas
-    if (questionHistory.length >= 10) {
-        questionHistory.shift();
-    }
-
-    questionHistory.push({ question, response });
-    updateHistoryUI();
-}
-
-// Função para atualizar o UI do histórico
-function updateHistoryUI() {
-    historyList.innerHTML = '';
-
-    if (questionHistory.length === 0) {
-        historyList.innerHTML = '<li class="empty">Sem perguntas ainda...</li>';
-        return;
-    }
-
-    questionHistory.forEach((item, index) => {
-        const li = document.createElement('li');
-        li.innerHTML = `<strong>P:</strong> ${item.question}<br><strong>R:</strong> ${item.response}`;
-        historyList.appendChild(li);
+// Função para tirar cartas aleatórias
+function drawCards(numberOfCards) {
+    // Limpar estado anterior
+    currentCards = [];
+    selectedCardId = null;
+    cardsDisplay.innerHTML = '';
+    cardDetail.classList.add('hidden');
+    
+    // Selecionar cartas aleatórias
+    const shuffled = [...cardsData].sort(() => Math.random() - 0.5);
+    currentCards = shuffled.slice(0, numberOfCards);
+    
+    // Mostrar baralho com instrução
+    deckVisual.innerHTML = '<div class="card-back">🔮 Clique para revelar</div>';
+    
+    // Mostrar placeholder das cartas
+    currentCards.forEach((card, index) => {
+        const cardElement = document.createElement('div');
+        cardElement.className = 'card-item';
+        cardElement.dataset.cardId = card.id;
+        cardElement.innerHTML = `<div class="card-number">Carta ${index + 1}</div><div class="card-name">?</div>`;
+        cardElement.addEventListener('click', () => selectCard(card.id));
+        cardsDisplay.appendChild(cardElement);
     });
 }
 
-// Event listeners
-askButton.addEventListener('click', () => {
-    const question = questionInput.value;
-    if (question.trim()) {
-        showAnswer(question);
-        questionInput.value = '';
-        questionInput.focus();
+// Função para revelar a próxima carta
+function revealNextCard() {
+    const unrevealed = currentCards.filter(card => {
+        const cardElement = document.querySelector(`[data-card-id="${card.id}"]`);
+        return cardElement && !cardElement.classList.contains('active');
+    });
+    
+    if (unrevealed.length > 0) {
+        const cardToReveal = unrevealed[0];
+        selectCard(cardToReveal.id);
     }
-});
+}
 
-// Permitir Enter para enviar
-questionInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        const question = questionInput.value;
-        if (question.trim()) {
-            showAnswer(question);
-            questionInput.value = '';
-        }
+// Função para selecionar e exibir detalhes de uma carta
+function selectCard(cardId) {
+    const card = cardsData.find(c => c.id === cardId);
+    if (!card) return;
+    
+    // Atualizar visual da carta
+    const cardElement = document.querySelector(`[data-card-id="${cardId}"]`);
+    if (cardElement) {
+        cardElement.classList.add('active');
+        cardElement.innerHTML = `<div class="card-number">Carta ${card.id}</div><div class="card-name">${card.name}</div>`;
     }
-});
+    
+    // Mostrar detalhes
+    displayCardDetail(card);
+    selectedCardId = cardId;
+}
 
-// Clicar na esfera também funciona
-oracleSphere.addEventListener('click', () => {
-    const question = questionInput.value;
-    if (question.trim()) {
-        showAnswer(question);
-        questionInput.value = '';
-        questionInput.focus();
-    } else {
-        answerText.textContent = "Você precisa fazer uma pergunta primeiro! 🔮";
-    }
-});
+// Função para exibir detalhes completos da carta
+function displayCardDetail(card) {
+    cardDetail.innerHTML = `
+        <div class="card-header-meta">CARTA ${card.id}</div>
+        <h2 class="card-title">${card.name}</h2>
+        
+        <div class="section-title">Mensagem Essencial</div>
+        <p class="card-text">${card.msg}</p>
+        
+        <div class="section-title">A Voz de Maria Madalena</div>
+        <p class="card-text madalena">${card.madalena}</p>
+        
+        <div class="section-title">Ritual de Integração</div>
+        <p class="card-text">${card.ritual}</p>
 
-// Focus no input ao carregar
-window.addEventListener('load', () => {
-    questionInput.focus();
-});
+        <div class="section-title">Para o teu Diário da Alma</div>
+        <p class="card-text">${card.journal}</p>
+        
+        <div class="meta-tags">
+            <strong>Palavra-chave:</strong> ${card.keyword}<br>
+            <strong>Energia:</strong> ${card.energy}
+        </div>
+    `;
+    
+    cardDetail.classList.remove('hidden');
+    
+    // Scroll para o detalhe
+    setTimeout(() => {
+        cardDetail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+}
+
+// Função para resetar a consulta
+function resetConsultation() {
+    currentCards = [];
+    selectedCardId = null;
+    cardsDisplay.innerHTML = '';
+    cardDetail.classList.add('hidden');
+    deckVisual.innerHTML = '<div class="card-back">🔮</div>';
+}
