@@ -241,8 +241,132 @@ html<!DOCTYPE html>
                 journal: "O que está a nascer em mim? O que tenho adiado ouvir? Qual é o primeiro passo honesto?",
                 keyword: "Chamamento",
                 energy: "Início • Intuição • Coragem",
-                image: "https://unsplash.com" // Mulher a caminhar em direção à luz/amanhecer
+                image: "https://unsplash.com"
             },
             {
                 id: "02",
                 name: "O Véu Rasgado",
+                msg: "A verdade aparece por baixo de uma narrativa que já não consegue sustentar-se. Ver pode doer, mas também devolve liberdade.",
+                madalena: "Esta carta pede clareza sem dramatização. Observa o que mudou no teu olhar e não aquilo que gostarias que fosse diferente.",
+                ritual: "Escreve uma situação sobre a qual tens dúvidas. Divide a folha em 'o que sei' e 'o que imagino'.",
+                journal: "Que verdade tenho evitado? Que ilusão já não preciso proteger?",
+                keyword: "Clareza",
+                energy: "Revelação • Discernimento • Liberdade",
+                image: "https://unsplash.com"
+            },
+            {
+                id: "03",
+                name: "A Lembrança",
+                msg: "Há conhecimentos, desejos e formas de estar que parecem regressar de dentro, como se a vida apenas te devolvesse algo que já conhecias.",
+                madalena: "Não confundas lembrança interior com obrigação. Recordar é reconhecer; escolher continua a ser teu.",
+                ritual: "Fecha os olhos durante três minutos e recorda um momento em que te sentiste profundamente tu mesma. Escreve o que estava presente.",
+                journal: "O que em mim permanece apesar das mudanças? Que parte de mim quero recuperar?",
+                keyword: "Reconhecimento",
+                energy: "Memória • Essência • Regresso",
+                image: "https://unsplash.com"
+            },
+            {
+                id: "04",
+                name: "A Centelha",
+                msg: "Nem toda a transformação começa com um acontecimento enorme. Às vezes começa com uma ideia, uma vontade ou uma coragem minúscula.",
+                madalena: "Protege a centelha sem exigir que ela seja já uma fogueira. O que é pequeno também pode ser decisivo.",
+                ritual: "Escolhe uma ação de quinze minutos que dê forma ao que quer nascer. Faz apenas essa ação.",
+                journal: "Que ideia insiste em voltar? O que posso começar hoje sem esperar perfeição?",
+                keyword: "Início",
+                energy: "Inspiração • Movimento • Possibilidade",
+                image: "https://unsplash.com"
+            },
+            {
+                id: "05",
+                name: "A Escolha",
+                msg: "Escolher é deixar de viver apenas em função das possibilidades e assumir uma direção. Toda escolha verdadeira contém renúncia.",
+                madalena: "Não procures a opção que elimina todo o risco. Procura a que está mais alinhada com a mulher que queres ser.",
+                ritual: "Desenha dois caminhos. Em cada um escreve: 'se eu escolher isto, quem me torno?'. Observa sem julgar.",
+                journal: "Que decisão estou a adiar? O que já sei, apesar do medo?",
+                keyword: "Decisão",
+                energy: "Liberdade • Responsabilidade • Direção",
+                image: "https://unsplash.com"
+            },
+            {
+                id: "06",
+                name: "A Filha do Fogo",
+                msg: "A paixão sagrada e a tua força interna procuram expressão. Deixa que a tua intensidade cure em vez de ocultar.",
+                madalena: "O fogo interno foi feito para iluminar o teu caminho, nunca para te consumir.",
+                ritual: "Dança livremente no teu espaço por 5 minutos, libertando a energia acumulada.",
+                journal: "Onde estou a reter a minha paixão e o meu poder por medo do julgamento?",
+                keyword: "Intensidade",
+                energy: "Poder • Expressão • Vitalidade",
+                image: "https://unsplash.com"
+            },
+            {
+                id: "07",
+                name: "O Silêncio do Deserto",
+                msg: "Afasta-te do ruído das opiniões alheias. É na aparente nudez do deserto que a tua voz mais pura se revela.",
+                madalena: "Não temas o vazio. O deserto não é a ausência de vida, é o berço da revelação.",
+                ritual: "Permanece 10 minutos em silêncio absoluto, apenas a focar na tua respiração.",
+                journal: "De que distrações me estou a rodear para não escutar a minha verdade?",
+                keyword: "Isolamento",
+                energy: "Paz • Presença • Escuta",
+                image: "https://unsplash.com"
+            },
+            {
+                id: "08",
+                name: "O Perfume do Bálsamo",
+                msg: "Chegou o momento de ungir as tuas próprias feridas. O cuidado e a autocompaixão são os teus maiores remédios.",
+                madalena: "Derrama amor sobre a tua história. A cura começa no instante em que deixas de te condenar.",
+                ritual: "Massaja as tuas mãos com um óleo ou creme perfumado, agradecendo ao teu corpo.",
+                journal: "Que parte da minha história ou dor ainda necessita do meu perdão?",
+                keyword: "Nutrição",
+                energy: "Cura • Compaixão • Suavidade",
+                image: "https://unsplash.com"
+            },
+            {
+                id: "09",
+                name: "A Estrela da Manhã",
+                msg: "Uma nova esperança desponta no teu horizonte. A noite escura da alma está a dar lugar a um novo amanhecer.",
+                madalena: "Olha para a frente com esperança. O teu brilho não depende da aprovação do mundo.",
+                ritual: "Abre a janela ao acordar, respira o ar puro e estica os braços em direção ao céu.",
+                journal: "Que nova perspetiva ou recomeço está a querer iluminar a minha vida?",
+                keyword: "Esperança",
+                energy: "Renovação • Fé • Luz",
+                image: "https://unsplash.com"
+            },
+            {
+                id: "10",
+                name: "O Altar Interior",
+                msg: "O teu coração é um espaço sagrado. Santifica os teus desejos e honra o teu próprio templo.",
+                madalena: "Nenhum templo exterior tem mais valor do que a habitação divina em ti.",
+                ritual: "Coloca um pequeno objeto que represente a tua essência num lugar de destaque na tua casa.",
+                journal: "Tenho tratado as minhas necessidades com a reverência que elas merecem?",
+                keyword: "Devoção",
+                energy: "Sacralidade • Respeito • Centro",
+                image: "https://unsplash.com"
+            },
+            {
+                id: "11",
+                name: "O Espinho da Rosa",
+                msg: "Dificuldades e dores fazem parte do crescimento. O espinho protege a beleza que está a florescer.",
+                madalena: "Não rejeites o teu sofrimento; ele é a casca protetora da tua sabedoria futura.",
+                ritual: "Segura algo áspero nas mãos e medita sobre como superaste desafios passados.",
+                journal: "Que barreira ou dor atual posso transformar em resiliência e proteção?",
+                keyword: "Proteção",
+                energy: "Resistência • Limites • Evolução",
+                image: "https://unsplash.com"
+            },
+            {
+                id: "12",
+                name: "A Água Viva",
+                msg: "Permite que as tuas emoções fluam livremente. Limpa o que está estagnado e deixa a intuição renovar-te.",
+                madalena: "A alma rígida quebra. Sê como a água, que contorna os obstáculos e purifica a terra.",
+                ritual: "Bebe um copo de água calmamente, mentalizando a purificação das tuas mágoas.",
+                journal: "Que sentimentos tenho tentado conter ou esconder que precisam de ser chorados ou expressos?",
+                keyword: "Fluidez",
+                energy: "Purificação • Emoção • Renovação",
+                image: "https://unsplash.com"
+            },
+            {
+                id: "13",
+                name: "O Sudário Exposto",
+                msg: "O tempo do luto e da dor chegou ao fim. É hora de deixar para trás as vestes do passado e renascer.",
+                madalena: "Não procures entre os mortos aquela que já ressuscitou. Liberta o que terminou.",
+                ritual: "Escreve um hábito antigo num papel e rasga-o, decretando o fim desse ciclo.",
